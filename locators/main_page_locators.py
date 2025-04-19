@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
     QUESTION_TEMPLATE = (By.XPATH, "//div[@id='accordion__heading-{0}']")
-    ANSWER_TEMPLATE = (By.XPATH, "//div[@id='accordion__panel-{0}']")
+    ANSWER_TEMPLATE = (By.XPATH, "//div[@id='accordion__panel-{}']/p")
 
     FAQ_HEADER = (By.XPATH, "//div[contains(text(),'Вопросы о важном')]")
 

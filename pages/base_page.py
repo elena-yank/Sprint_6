@@ -1,6 +1,5 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 
 class BasePage:
     def __init__(self, driver):
@@ -22,9 +21,8 @@ class BasePage:
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
     def scroll_to_element(self, locator):
-        element = self.wait_for_visible(locator)
-        actions = ActionChains(self.driver)
-        actions.move_to_element(element).perform()
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
 
     def is_element_present(self, locator):
         try:
@@ -33,3 +31,16 @@ class BasePage:
         except:
             return False
 
+    def get_text(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator)).text
+
+    def switch_to_new_tab(self, timeout=10):
+        self.wait.until(lambda d: len(d.window_handles) > 1)
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.wait_for_url_change('about:blank')
+
+    def wait_for_url_change(self, old_url, timeout=10):
+        self.wait.until(lambda d: d.current_url != old_url)
+
+    def wait_for_url_contains(self, text, timeout=10):
+        self.wait.until(lambda d: text in d.current_url.lower())

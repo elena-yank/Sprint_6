@@ -4,7 +4,9 @@ from locators.order_page_locators import OrderPageLocators
 from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import allure
+import logging
 
 
 class OrderPage(BasePage):
@@ -35,7 +37,7 @@ class OrderPage(BasePage):
         metro_option = (By.XPATH, f'//div[text()="{metro}"]')
         self.click(metro_option)
         self.type(OrderPageLocators.PHONE_FIELD, phone)
-        self.click(OrderPageLocators.NEXT_BUTTON_LOCATOR)  # Заменили локатор на NEXT_BUTTON_LOCATOR
+        self.click(OrderPageLocators.NEXT_BUTTON_LOCATOR)
 
     @allure.step('Выбираем дату через 2 дня от текущей, срок аренды, цвет')
     def fill_rent_info(self, color='black', comment=''):
@@ -71,8 +73,10 @@ class OrderPage(BasePage):
         try:
             self.click(OrderPageLocators.COMPLETE_ORDER)
             return self.wait_for_visible(OrderPageLocators.CONFIRMATION_MODAL)
-        except Exception as e:
-            print(f"Не появилось окно завершения заказа: {e}")
+        except TimeoutException as e:
+            logging.warning(f"Вышло время ожидания окна подтверждения заказа: {e}")
+        except NoSuchElementException as e:
+            logging.warning(f"Не найдено окно подтверждения заказа: {e}")
 
 
     @allure.step('Скроллим до нужного элемента')
@@ -87,11 +91,11 @@ class OrderPage(BasePage):
 
     @allure.step('Закрываем окно с запросом на куки')
     def close_cookie_popup(self):
+        cookie_button = (By.ID, 'rcc-confirm-button')
         try:
-            cookie_button = (By.ID, 'rcc-confirm-button')
             if self.is_element_present(cookie_button):
                 self.click(cookie_button)
-        except Exception as e:
-            print(f"Не удалось закрыть окно с куки: {e}")
+        except (NoSuchElementException, TimeoutException) as e:
+            logging.warning(f"Попап с куками не найден: {e}")
 
 
