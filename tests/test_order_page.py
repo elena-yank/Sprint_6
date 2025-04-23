@@ -1,7 +1,6 @@
 import pytest
 from data import URLs, OrderTestData
 from pages.order_page import OrderPage
-from locators.order_page_locators import OrderPageLocators
 
 class TestOrderCreation:
     @pytest.mark.parametrize("order_data", OrderTestData.ORDER_DATA)
