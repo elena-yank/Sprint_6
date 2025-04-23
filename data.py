@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 class URLs:
     faq_main_page = 'https://qa-scooter.praktikum-services.ru'
     faq_main_page_slash = faq_main_page + '/'
@@ -49,7 +51,6 @@ class OrderTestData:
             "name": "Кристина",
             "surname": "Трабл",
             "address": "ул. Проблемная, 21",
-            "metro": "Черкизовская",
             "phone": "89161234567"
         },
         {
@@ -57,7 +58,17 @@ class OrderTestData:
             "name": "Питер",
             "surname": "Проблемс",
             "address": "ул. Арбат, 66",
-            "metro": "Курская",
             "phone": "86666666666"
         }
     ]
+
+class TestDates:
+    @staticmethod
+    def get_future_date(days_offset=2):
+        """Возвращает дату в будущем в формате (day, month, year)"""
+        future_date = datetime.now() + timedelta(days=days_offset)
+        return {
+            'day': future_date.day,
+            'month': future_date.month,
+            'year': future_date.year
+        }

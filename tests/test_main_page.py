@@ -1,7 +1,6 @@
 import pytest
 from pages.main_page import MainPageSamokat
 from data import Answers, Questions, URLs
-from locators.main_page_locators import MainPageLocators
 
 
 class TestFAQQuestions:
@@ -20,21 +19,13 @@ class TestFAQQuestions:
         page = MainPageSamokat(driver)
 
         # Открытие главной страницы
-        page.open(URLs.faq_main_page)
+        page.open_url(URLs.faq_main_page)
 
         # Прокрутка до раздела FAQ
         page.scroll_to_faq_header()
-
-        # Проверка текста вопроса
-        assert page.check_questions_name(index, question_text)
 
         # Клик по вопросу
         page.click_on_questions(index)
 
         # Получение текста ответа
-        answer_locator = (MainPageLocators.ANSWER_TEMPLATE[0],
-                          MainPageLocators.ANSWER_TEMPLATE[1].format(index))
-        actual_answer = page.get_text(answer_locator)
-
-        # Проверка текста ответа
-        assert expected_answer in actual_answer
+        page.check_question_and_answer(index, question_text, expected_answer)

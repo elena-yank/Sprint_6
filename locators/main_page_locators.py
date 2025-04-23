@@ -13,3 +13,6 @@ class MainPageLocators:
     # Кнопки Яндекс и лого Скутера
     DZEN_BUTTON = (By.XPATH, '//img[@src="/assets/ya.svg" and @alt="Yandex"]')
     SAMOKAT_LOGO = (By.XPATH, '//img[@src="/assets/scooter.svg" and @alt="Scooter"]')
+
+    COOKIE_BUTTON = (By.ID, 'rcc-confirm-button')
+    COOKIE_POPUP = (By.XPATH, '//div[contains(@class, "App_CookieText__1sbqp")]')

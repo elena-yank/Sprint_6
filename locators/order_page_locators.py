@@ -6,6 +6,7 @@ class OrderPageLocators:
     SURNAME_FIELD = (By.XPATH, '//input[@placeholder="* Фамилия"]')
     ADDRESS_FIELD = (By.XPATH, '//input[@placeholder="* Адрес: куда привезти заказ"]')
     METRO_FIELD = (By.XPATH, '//input[@placeholder="* Станция метро"]')
+    METRO_OPTION = (By.XPATH, f'//div[text()="Курская"]')
     PHONE_FIELD = (By.XPATH, '//input[@placeholder="* Телефон: на него позвонит курьер"]')
     NEXT_BUTTON_LOCATOR = (By.XPATH,
                            '//*[contains(@class, "Order_NextButton")]/*[contains(@class, "Button_Button")]')
@@ -13,7 +14,8 @@ class OrderPageLocators:
     # Вторая страница формы
     DATE_FIELD = (By.XPATH, '//input[@placeholder="* Когда привезти самокат"]')
     DATE_PICKER = (By.XPATH, '//div[contains(@class, "react-datepicker")]')
-    DATE_DAY = (By.XPATH, '//div[contains(@class, "react-datepicker__day") and not(contains(@class, "outside-month"))]')
+    DAY_LOCATOR_TEMPLATE = (By.XPATH,
+                            '//div[contains(@class, "react-datepicker__day") and not(contains(@class, "outside-month")) and text()="{}"]')
 
     RENTAL_PERIOD_FIELD = (By.XPATH, '//div[contains(text(), "* Срок аренды")]')
     RENTAL_PERIOD_DROPDOWN = (By.XPATH, '//div[@class="Dropdown-menu"]')
