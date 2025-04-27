@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 class URLs:
     faq_main_page = 'https://qa-scooter.praktikum-services.ru'
     faq_main_page_slash = faq_main_page + '/'
-    dzen_page = 'https://dzen.ru/?yredirect=true'
+    dzen_page = 'yandex.ru/'
     make_an_order_page = 'https://qa-scooter.praktikum-services.ru/order'
 
 # Переменные с текстом вопроса

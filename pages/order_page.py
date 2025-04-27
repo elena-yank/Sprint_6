@@ -85,3 +85,5 @@ class OrderPage(BasePage):
     def is_confirmation_modal_displayed(self):
         return self.is_element_present(OrderPageLocators.CONFIRMATION_MODAL)
 
+
+

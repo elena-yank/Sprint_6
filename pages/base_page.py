@@ -67,8 +67,9 @@ class BasePage:
         self.wait_for_clickable(day_locator)
         self.click(day_locator)
 
-    def is_redirected_to_dzen(self):
-        return "yandex.ru" in self.driver.current_url
+    def get_current_url(self):
+        return self.wait.until(lambda d: d.current_url)
 
-    def is_on_main_page(self):
-        return self.driver.current_url == URLs.faq_main_page_slash
+    def check_url_contains(self, expected_part):
+        current_url = self.get_current_url()
+        return expected_part in current_url

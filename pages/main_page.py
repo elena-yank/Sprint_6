@@ -48,17 +48,7 @@ class MainPageSamokat(BasePage):
         self.click_on_questions(question_number)
         assert self.check_answer_text(question_number, expected_answer)
 
-    @allure.step("Нажать на кнопку Яндекс")
-    def click_dzen_button(self):
-        self.click(MainPageLocators.DZEN_BUTTON)
-        self.switch_to_new_tab()
-        self.wait_for_url_contains('yandex.ru')
-
     @allure.step("Нажать верхнюю кнопку 'Заказать'")
     def click_order_button_header(self):
         self.click(MainPageLocators.ORDER_BUTTON_HEADER)
-
-    @allure.step("Нажать логотип Самоката")
-    def click_samokat_logo(self):
-        self.click(MainPageLocators.SAMOKAT_LOGO)
 
