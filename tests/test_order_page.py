@@ -23,13 +23,10 @@ class TestOrderCreation:
     # 3. Заполняем вторую часть формы
         order_page.fill_rent_info()
 
-    # 4. Заказываем
-        order_page.complete_order()
-
-    # 5. Отправляем заказ
+    # 4. Нажимаем "Далее"
         order_page.submit_order()
 
-    # 6. Проверяем подтверждение заказа
+    # 5. Проверяем подтверждение заказа
         order_page.confirm_order()
 
         assert order_page.is_confirmation_modal_displayed()

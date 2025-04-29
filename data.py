@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import random
 
 class URLs:
     faq_main_page = 'https://qa-scooter.praktikum-services.ru'
@@ -64,11 +65,12 @@ class OrderTestData:
 
 class TestDates:
     @staticmethod
-    def get_future_date(days_offset=2):
-        """Возвращает дату в будущем в формате (day, month, year)"""
+    def get_future_date(min_days=1, max_days=30):
+        days_offset = random.randint(min_days, max_days)
         future_date = datetime.now() + timedelta(days=days_offset)
         return {
             'day': future_date.day,
             'month': future_date.month,
-            'year': future_date.year
+            'year': future_date.year,
+            'days_offset': days_offset
         }

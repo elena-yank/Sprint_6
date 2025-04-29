@@ -1,7 +1,5 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from locators.main_page_locators import MainPageLocators
-from data import URLs
 
 class BasePage:
     def __init__(self, driver):
@@ -53,19 +51,6 @@ class BasePage:
     def wait_for_url_contains(self, text):
         self.wait.until(lambda d: text in d.current_url.lower())
 
-    def close_cookie_popup(self):
-        if self.is_element_present(MainPageLocators.COOKIE_POPUP):
-            button = self.wait_for_clickable(MainPageLocators.COOKIE_BUTTON)
-            if button:
-                button.click()
-
-    def fill_rent_info(self, color='black', comment='', days_offset=2):
-        self.click(OrderPageLocators.DATE_FIELD)
-        self.wait_for_visible(OrderPageLocators.DATE_PICKER)
-        day_locator = self.get_future_day_locator(days_offset)
-        self.scroll_to_element(day_locator)
-        self.wait_for_clickable(day_locator)
-        self.click(day_locator)
 
     def get_current_url(self):
         return self.wait.until(lambda d: d.current_url)

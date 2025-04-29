@@ -16,6 +16,7 @@ class OrderPageLocators:
     DATE_PICKER = (By.XPATH, '//div[contains(@class, "react-datepicker")]')
     DAY_LOCATOR_TEMPLATE = (By.XPATH,
                             '//div[contains(@class, "react-datepicker__day") and not(contains(@class, "outside-month")) and text()="{}"]')
+    NEXT_MONTH_BUTTON = (By.CSS_SELECTOR, 'button.react-datepicker__navigation--next')
 
     RENTAL_PERIOD_FIELD = (By.XPATH, '//div[contains(text(), "* Срок аренды")]')
     RENTAL_PERIOD_DROPDOWN = (By.XPATH, '//div[@class="Dropdown-menu"]')
